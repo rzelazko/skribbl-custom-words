@@ -1,4 +1,14 @@
 const fetch = require('node-fetch');
+const argv = require('yargs')
+    .usage('Fetch words from e-kalambury.pl\nUsage: $0 --total 20')
+    .options({
+        total: {
+            alias: 't',
+            description: 'Total words returned',
+            default: 50
+        },
+    }).help('h')
+    .alias('h', 'help').argv;
 const url = "https://e-kalambury.pl/hasla.php";
 const options = {
     "headers": {
@@ -34,7 +44,7 @@ function sanitizeWord(string) {
 
 const printCustomWords = async () => {
     let customWords = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < argv.total; i++) {
         let response = await fetchAndParse(url, options);
         customWords.push(response);
     }
