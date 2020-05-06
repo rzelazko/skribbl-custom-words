@@ -1,0 +1,15 @@
+{
+  "name": "skribbl-custom-words",
+  "version": "1.0.0",
+  "description": "Generate custom words for skribbl.io page",
+  "main": "index.js",
+  "scripts": {
+    "main": "node index.js",
+    "test": "echo \"Error: I will add tests some day\" && exit 1"
+  },
+  "author": "Rafal Zelazko <rzelazko@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}
