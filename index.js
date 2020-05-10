@@ -7,7 +7,14 @@ const argv = require('yargs')
             description: 'Total words returned',
             default: 50
         },
-    }).help('h')
+        noDiacritics: {
+            alias: 'n',
+            description: 'Remove accents/diacritics in all words',
+            default: false
+        }
+    })
+    .boolean('noDiacritics')
+    .help('h')
     .alias('h', 'help').argv;
 const url = "https://e-kalambury.pl/hasla.php";
 const options = {
@@ -38,6 +45,9 @@ function sanitizeWord(string) {
         result = string.replace(/\s+/, ' ').trim().toLowerCase()
     } else {
         result = "";
+    }
+    if (argv.noDiacritics) {
+        result = result.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\u0142/g, "l")
     }
     return result;
 }
